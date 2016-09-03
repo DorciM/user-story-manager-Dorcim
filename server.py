@@ -11,11 +11,13 @@ def list_data():
     query = User_story.select()
     return render_template('list.html', user_stories=query, web2='http://127.0.0.1:5000/delete', web='http://127.0.0.1:5000/story')
 
+# story page, default
 @app.route("/story", methods=['GET'])
 def story():
     empty_story = User_story(story_title="", content="", acceptance_criteria="", business_value="", estimation="", status="")
     return render_template("form.html", user_story = empty_story)
 
+# add a new User story, upload it to the database
 @app.route("/story", methods=['POST'])
 def add_story():
     new_story = User_story.create(story_title = request.form['story_title'],
@@ -26,6 +28,7 @@ def add_story():
                 status = request.form['status'])
     return "Database uploaded!"
 
+# update a story by story_id
 @app.route("/story/<story_id>", methods=['POST'])
 def update_story(story_id):
     data = User_story.get(User_story.id == story_id)
@@ -37,16 +40,18 @@ def update_story(story_id):
                                 status=request.form['status'])
     return "Story updated!"
 
+# view a story, by story_id
 @app.route("/story/<story_id>", methods=['GET'])
 def show_story(story_id):
     data = User_story.get(User_story.id == story_id)
     return render_template('form.html', user_story=data)
 
+# delete a story, by story_id
 @app.route("/delete/<story_id>", methods=['GET'])
 def delete_story(story_id):
     data = User_story.get(User_story.id == story_id)
     data.delete_instance()
-    return redirect('http://localhost:9876/list')
+    return redirect('http://127.0.0.1:5000/list')
 
 if __name__ == "__main__":
     app.run()
