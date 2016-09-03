@@ -1,6 +1,7 @@
 from peewee import *
+import config
 
-db = PostgresqlDatabase('sprintmanager_app', user='doramedgyasszay')
+db = PostgresqlDatabase(config.dbname, user=config.user)
 
 class BaseModel(Model):
 
