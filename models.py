@@ -9,10 +9,10 @@ class BaseModel(Model):
         database = db
 
 class User_story(BaseModel):
-    title = CharField()
-    story = CharField()
+    story_title = CharField()
+    content = CharField()
     acceptance_criteria = CharField()
-    b_value = FloatField()
+    business_value = FloatField()
     estimation = FloatField()
     status = CharField()
 
