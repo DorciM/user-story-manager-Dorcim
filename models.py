@@ -12,7 +12,7 @@ class User_story(BaseModel):
     story_title = CharField()
     content = CharField()
     acceptance_criteria = CharField()
-    business_value = FloatField()
+    business_value = IntegerField()
     estimation = FloatField()
     status = CharField()
 
