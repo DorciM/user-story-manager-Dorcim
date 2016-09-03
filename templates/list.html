@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sprint Reporter</title>
+</head>
+
+<h2>User Story Manager</h2>
+
+<style>
+    table, th, td {
+            border: 1px solid black;
+    }
+</style>
+
+    <body>
+        <form action="http://127.0.0.1:5000/story">
+            <input type="submit" value="Add new story" />
+        </form>
+
+        <div>
+
+         <ul>
+
+             <table style="width:100%">
+                 <tr>
+                     <td>Story title</td>
+                     <td>Content</td>
+                     <td>Acceptance criteria</td>
+                     <td>Business value</td>
+                     <td>Estimation</td>
+                     <td>Status</td>
+                     <td>Edit</td>
+                     <td>Delete</td>
+                 </tr>
+
+                {% for i in user_stories %}
+                <tr>
+
+                    <td>{{i.story_title}}</td>
+                    <td>{{i.user_story}}</td>
+                    <td>{{i.acceptance_criteria}}</td>
+                    <td>{{i.business_value}}</td>
+                    <td>{{i.estimation}}</td>
+                    <td>{{i.status}}</td>
+                    <td><a href="{{web}}/{{i.id}}">Edit</a></td>
+                    <td><a href="{{web2}}/{{i.id}}">Delete</a></td>
+
+
+                </tr>
+                {% endfor %}
+
+    </table>
+
+   </ul>
+
+   </div>
+
+   </body>
+
+</html>
