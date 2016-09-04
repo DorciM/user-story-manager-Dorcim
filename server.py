@@ -37,12 +37,13 @@ def add_story():
 @app.route("/story/<story_id>", methods=['POST'])
 def update_story(story_id):
     data = User_story.get(User_story.id == story_id)
-    data.update(story_title=request.form['story_title'],
-                content=request.form['content'],
-                acceptance_criteria=request.form['acceptance_criteria'],
-                business_vaue=request.form['business_value'],
-                estimation=request.form['estimation'],
-                status=request.form['status'])
+    q = data.update(story_title=request.form['story_title'],
+                    content=request.form['content'],
+                    acceptance_criteria=request.form['acceptance_criteria'],
+                    business_value=request.form['business_value'],
+                    estimation=request.form['estimation'],
+                    status=request.form['status'])
+    q.execute()
     return "Story updated!"
 
 
