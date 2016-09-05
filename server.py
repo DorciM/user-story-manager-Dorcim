@@ -16,8 +16,8 @@ def list_data():
 # Story page, default
 @app.route("/story", methods=['GET'])
 def story():
-    empty_story = User_story(story_title="", content="", acceptance_criteria="", business_value="",
-                             estimation="", status="")
+    empty_story = User_story(story_title="", content="", acceptance_criteria="", business_value="100",
+                             estimation="0.5", status="")
     return render_template("form.html", user_story=empty_story)
 
 
@@ -30,19 +30,18 @@ def add_story():
                       business_value=request.form['business_value'],
                       estimation=request.form['estimation'],
                       status=request.form['status'])
-    return "Database uploaded!"
+    return redirect("http://127.0.0.1:5000/list", code=302)
 
 
 # Update a story by story_id
 @app.route("/story/<story_id>", methods=['POST'])
 def update_story(story_id):
-    data = User_story.get(User_story.id == story_id)
-    q = data.update(story_title=request.form['story_title'],
+    q = User_story.update(story_title=request.form['story_title'],
                     content=request.form['content'],
                     acceptance_criteria=request.form['acceptance_criteria'],
                     business_value=request.form['business_value'],
                     estimation=request.form['estimation'],
-                    status=request.form['status'])
+                    status=request.form['status']).where(User_story.id == story_id)
     q.execute()
     return "Story updated!"
 
