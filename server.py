@@ -30,6 +30,7 @@ def add_story():
                       status=request.form['status'])
     return redirect(url_for('list_data'), code=302)
 
+
 # Update a story by story_id
 @app.route("/story/<story_id>", methods=['POST','GET'])
 def update_story(story_id):
@@ -44,7 +45,6 @@ def update_story(story_id):
     else:
         user_story = User_story.get(User_story.id == story_id)
         return render_template('form.html', user_story=user_story)
-
 
 
 # Delete a story, by story_id
