@@ -1,2 +1,2 @@
 dbname = 'sprintmanager_app'
-user = 'doramedgyasszay'
+user = 'dora'

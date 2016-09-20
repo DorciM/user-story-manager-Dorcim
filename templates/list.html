@@ -1,63 +1,73 @@
 <!DOCTYPE html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Sprint Reporter</title>
+    <meta charset="utf-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://bootswatch.com/sandstone/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
-<h2>User Story Manager</h2>
+<body style="padding-top: 100px">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand">User Story Manager</a>
+        </div>
 
-<style>
-    table, th, td {
-            border: 1px solid black;
-    }
-</style>
+    </div>
+</nav>
+<div align="left" style="padding-left: 40px">
+<form action='http://127.0.0.1:5000/story'>
+    <input type="submit" value="Add new user story" class="btn btn-success"/>
+</form>
+</div>
+<br>
+<div>
 
-    <body>
-        <form action="http://127.0.0.1:5000/story">
-            <input type="submit" value="Add new story" />
-        </form>
+    <ul>
 
-        <div>
+        <table style="width:80%" border="solid">
+            <tr>
+                <th height="40">Story title</th>
+                <th>Content</th>
+                <th>Acceptance criteria</th>
+                <th>Business value</th>
+                <th>Estimation</th>
+                <th>Status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
 
-         <ul>
-
-             <table style="width:100%">
-                 <tr>
-                     <td>Story title</td>
-                     <td>Content</td>
-                     <td>Acceptance criteria</td>
-                     <td>Business value</td>
-                     <td>Estimation</td>
-                     <td>Status</td>
-                     <td>Edit</td>
-                     <td>Delete</td>
-                 </tr>
-
-                {% for i in user_stories %}
+            {% for i in user_stories %}
                 <tr>
 
-                    <td>{{i.story_title}}</td>
-                    <td>{{i.content}}</td>
-                    <td>{{i.acceptance_criteria}}</td>
-                    <td>{{i.business_value}}</td>
-                    <td>{{i.estimation}}</td>
-                    <td>{{i.status}}</td>
-                    <td><a href="{{web}}/{{i.id}}">
-                        <img src="static/pencil.png" alt="Edit" style="width:32px;height:32px;"></a></td>
-                    <td><a href="{{web2}}/{{i.id}}">
-                        <img src="static/trashbin.jpeg" alt="Delete" style="width:32px;height:32px;"></a></td>
+                    <td>{{ i.story_title }}</td>
+                    <td>{{ i.content }}</td>
+                    <td>{{ i.acceptance_criteria }}</td>
+                    <td>{{ i.business_value }}</td>
+                    <td>{{ i.estimation }}</td>
+                    <td>{{ i.status }}</td>
+                    <td><a href="{{ web }}/{{ i.id }}">
+                        <img src="static/pencil.png" alt="Edit" style="width:30px;height:30px;"></a></td>
+                    <td><a href="{{ web2 }}/{{ i.id }}">
+                        <img src="static/trashbin.jpeg" alt="Delete" style="width:30px;height:30px;"></a></td>
 
 
                 </tr>
-                {% endfor %}
+            {% endfor %}
 
-    </table>
+        </table>
 
-   </ul>
+    </ul>
 
-   </div>
+</div>
 
-   </body>
+</body>
 
 </html>

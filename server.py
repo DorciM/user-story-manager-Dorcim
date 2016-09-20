@@ -16,13 +16,13 @@ def list_data():
 # Story page, default
 @app.route("/story", methods=['GET'])
 def story():
-    empty_story = User_story(story_title="", content="", acceptance_criteria="", business_value="100",
+    empty_story = User_story( id = "", story_title="", content="", acceptance_criteria="", business_value="100",
                              estimation="0.5", status="")
     return render_template("form.html", user_story=empty_story)
 
 
 # Add a new User story, upload it to the database
-@app.route("/story", methods=['POST'])
+@app.route("/story/", methods=['POST'])
 def add_story():
     User_story.create(story_title=request.form['story_title'],
                       content=request.form['content'],
@@ -43,7 +43,7 @@ def update_story(story_id):
                     estimation=request.form['estimation'],
                     status=request.form['status']).where(User_story.id == story_id)
     q.execute()
-    return "Story updated!"
+    return redirect("http://127.0.0.1:5000/list", code=302)
 
 
 # View a story, by story_id
@@ -61,4 +61,4 @@ def delete_story(story_id):
     return redirect('http://127.0.0.1:5000/list')
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
