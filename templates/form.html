@@ -1,86 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="utf-8">
-    <title>SPRINT REPORTER APP</title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://bootswatch.com/darkly/bootstrap.min.css">
+    <link rel="stylesheet" href="https://bootswatch.com/sandstone/bootstrap.min.css">
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/static/form_style.css">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='mystyle.css') }}">
 </head>
 
-<body style="padding-top: 70px">
-<div class="container">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">User Story Manager - {{ title }}</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/list">Home</a></li>
-            </ul>
+<body style="padding-top: 50px">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/list">Home</a>
         </div>
-    </nav>
-</div>
 
-
-    <form action="/list" method="post">
-
-    <h3>Story title</h3>
-    <div class="input-group">
-        <input type="text" class="form-control" name="story_title" placeholder="Story Title"
-               aria-describedby="basic-addon1" required value={{user_story.story_title}}>
     </div>
-
-    <h3>Content</h3>
-    <div class="input-group">
-        <input type="text" class="form-control" name="content" placeholder="User story content"
-               aria-describedby="basic-addon1" required value={{user_story.content}}>
+</nav>
+<form action="/story/{{ user_story.id }}" method="post">
+    <div>
+        <label for="story_title">Story Title</label></br>
+        <textarea required name="story_title" rows="1" cols="60" id="story_title"
+                  placeholder="New Story">{{ user_story.story_title }}</textarea>
     </div>
-
-    <h3>Acceptance criteria</h3>
-    <div class="input-group">
-        <input type="text" class="form-control" name="acceptance_criteria" placeholder="Acceptance criteria"
-               aria-describedby="basic-addon1" required value={{user_story.acceptance_criteria}}>
-    </div>
-
-    <h3>Business value</h3>
-    <div class="input-group">
-        <input type="number" class="form-control" name="business_value" value={{user_story.business_value}}
-        min="100" max="1500" step="10"/>
-    </div>
-
-    <h3>Estimation</h3>
-    <div class="input-group">
-        <input type="number" class="form-control" name="estimation" value={{user_story.estimation}}
-        min="0.5" max="40" step="0.5"/>
-    </div>
-
-    <h3>Status</h3>
-    <div class="form-group">
-        <div class="col-sm-2">
-        <select class="form-control" id="status" name="{{user_story.status}}">
-            <option>New</option>
-            <option>To Do</option>
-            <option>In Progress</option>
-            <option>Review</option>
-            <option>Done</option>
-        </select>
-     </div>
-     </div>
-    <br>
-    <br>
-    <br>
 
     <div>
-        <button class="btn btn-default btn-sm active" id="save" type="submit">Save</button>
+        <label for="content">Content</label></br>
+        <textarea required name="content" rows="1" cols="60" id="content"
+                  placeholder="User Story">{{ user_story.content }}</textarea>
     </div>
-     </form>
+
+    <div>
+        <label for="acceptance_criteria">Acceptance Criteria</label></br>
+        <textarea required name="acceptance_criteria" rows="1" cols="60" id="acceptance_criteria"
+                  placeholder="Acceptance Criteria">{{ user_story.acceptance_criteria }}</textarea>
+    </div>
+
+    <div>
+        <label for="business_value">Business Value</label><br>
+        <input required name="business_value" id="business_value" type="number"
+               value="{{ user_story.business_value  or 100 }}" min="100" max="1500" step="100">
+    </div>
+
+    <div>
+        <label for="estimation">Estimation</label><br>
+        <input required name="estimation" id="estimation" type="number" value="{{ user_story.estimation  or 0.5 }}"
+               min="0.5" max="40" step="0.5">
+    </div>
+
+    <div>
+        <label for="status">Status</label><br>
+        <select required name="status" id="status">
+            <option {{ "selected" if user_story.status == "planning" else "" }} value="planning">Planning</option>
+            <option {{ "selected" if user_story.status == "to do" else "" }}value="to do">To Do</option>
+            <option {{ "selected" if user_story.status == "in progress" else "" }}value="in progress">In progress
+            </option>
+            <option {{ "selected" if user_story.status == "review" else "" }}value="review">Review</option>
+            <option {{ "selected" if user_story.status == "done" else "" }}value="done">Done</option>
+        </select>
+    </div>
+    <br>
+    <div>
+        <label for="submit"></label>
+        <button name="submit" class="btn btn-success" type="submit" id="submit">Save {{ action }}</button>
+    </div>
+
+</form>
+
 </body>
+
 </html>
