@@ -1,0 +1,59 @@
+html {
+    height: 100%;
+    font-family: helvetica, sans-serif, georgia, arial;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    background-color: white;
+    padding: 10px;
+}
+
+body {
+    padding-top: 50px;
+    margin: 1em;
+    font-family: helvetica, sans-serif, arial;
+    font-size: 18px;
+    line-height: 2;
+    color: green;
+    background-color: transparent;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: darkslategrey;
+}
+
+input[type='submit'],
+input[type='number'],
+textarea,
+select {
+    padding: 10px;
+    width: auto;
+    display: inline;
+    margin: 10px
+    color: darkslategrey;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+table, th, td {
+    background-color: white;
+    border-color: black;
+    margin: auto;
+    border-style:solid;
+}
+
+th, td {
+    padding: 5px;
+    border-color: black;
+}
+
+th {
+    height: 100px;
+    text-align: left;
+    border-color: black;
+    background-color: transparent;
+    font-size: 18px;
+    border-style: solid;
+}
