@@ -15,11 +15,3 @@ class User_story(BaseModel):
     business_value = FloatField()
     estimation = FloatField()
     status = CharField()
-
-db.connect()
-
-print("Drop table!")
-db.drop_tables([User_story], safe=True)
-
-print("Create table!")
-db.create_tables([User_story], safe=True)
